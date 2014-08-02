@@ -96,9 +96,9 @@ $(function() {
 						var http = '';
 						if ( localStorage.option_http == 1 ) http = 'http:';
 						if ( localStorage.option_script == 1 ) {
-							listAll = '<script src="' + http + '//cdn.jsDelivr.net/g/' + listAll + '"></script>';
+							listAll = '<script src="' + http + '//cdn.jsdelivr.net/g/' + listAll + '"></script>';
 						} else {
-							listAll = http + '//cdn.jsDelivr.net/g/' + listAll;
+							listAll = http + '//cdn.jsdelivr.net/g/' + listAll;
 						}
 						result.val(listAll);
 					}
