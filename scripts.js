@@ -24,22 +24,24 @@ $(function() {
 				});
 
 				// получаем список файлов
-				function filesList(version) {
+				function filesList(name, version) {
 					var files = '';
 					$.each(data, function(index, item) {
-						for (var j = 0; j < item.assets.length; j++) {
-							if (item.assets[j].version == version) {
-								for (var k = 0; k < item.assets[j].files.length; k++) {
-									var file = item.assets[j].files[k];
-									if (/.js/.test(file)) {
-										files +=
-											'<li data-name="' + item.name + '" data-version="' + version + '" data-file="' + file + '" data-mainfile="' + item.mainfile + '">' +
-											'<div class="item__checkbox"></div>' +
-											'//cdn.jsdelivr.net/' + item.name + '/' + version + '/' + file +
-											'</li>';
+						if (item.name == name) {
+							for (var j = 0; j < item.assets.length; j++) {
+								if (item.assets[j].version == version) {
+									for (var k = 0; k < item.assets[j].files.length; k++) {
+										var file = item.assets[j].files[k];
+										if (/.js/.test(file)) {
+											files +=
+												'<li data-name="' + item.name + '" data-version="' + version + '" data-file="' + file + '" data-mainfile="' + item.mainfile + '">' +
+												'<div class="item__checkbox"></div>' +
+												'//cdn.jsdelivr.net/' + item.name + '/' + version + '/' + file +
+												'</li>';
+										}
 									}
+									if (files === '') files = '<li class="alert">This project does not contain JavaScript files.</li>';
 								}
-								if (files === '') files = '<li class="alert">This project does not contain JavaScript files.</li>';
 							}
 						}
 					}); // $.each
@@ -142,7 +144,7 @@ $(function() {
 								'<div class="item__homepage"><a href="' + item.homepage + '" target="_blank">Website</a></div>' +
 								github +
 								'<div class="item__desc">' + item.description + '</div>' +
-								'<div class="item__files">' + filesList(lastVersion) + '</div>' +
+								'<div class="item__files">' + filesList(item.name, lastVersion) + '</div>' +
 							'</div>'
 						);
 					} else {
