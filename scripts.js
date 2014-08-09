@@ -167,9 +167,10 @@ $(function() {
 					var el = $(this);
 					var currentVersion = el.closest('div.item__versions').find('div.item__versions-current');
 					var clickedVersion = el.text();
+					var itemName = el.closest('div.item').data('name');
 					if ( clickedVersion != currentVersion.text() ) {
 						currentVersion.text( el.text() ).next().hide();
-						el.closest('div.item').find('div.item__files').html(filesList(clickedVersion));
+						el.closest('div.item').find('div.item__files').html(filesList(itemName, clickedVersion));
 					}
 					createResults();
 				})
